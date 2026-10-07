@@ -9,12 +9,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class StudentDao {
     private final JdbcTemplate jdbcTemplate;
 
-    public StudentDao(JdbcTemplate jdbcTemplate) throws Exception{
+    public StudentDao(JdbcTemplate jdbcTemplate){
         this.jdbcTemplate=jdbcTemplate;
     }
 
-    public List<Student> findAll() throws Exception{
-        String sql="SELECT * FROM student";
+    public List<Student> findAll(){
+        String sql="SELECT id, name, email, score FROM student";
 
         return jdbcTemplate.query(sql,(rs, rowNum) -> {
             Student s = new Student();
@@ -37,7 +37,7 @@ public class StudentDao {
     public int updateScore(String email,double newScore){
         String sql="UPDATE student SET score=? WHERE email=?";
 
-        //顺序应该没有影响?
+        //参数顺序必须与 SQL 中的占位符一致：先成绩，再邮箱。
         return jdbcTemplate.update(sql,newScore,email);
     }
 

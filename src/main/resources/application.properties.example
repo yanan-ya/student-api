@@ -1,4 +1,6 @@
 # 复制本文件为 application.properties，填入你自己的数据库信息
+# 首次建表可参考 docs/student-schema.sql；已有数据库请先核对表结构，不要重复建表。
+# 以下连接参数用于本地学习环境；测试使用 src/test/resources 下独立的 H2 配置。
 spring.datasource.url=jdbc:mysql://localhost:3306/student_system?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
 spring.datasource.username=你的数据库用户名
 spring.datasource.password=你的数据库密码

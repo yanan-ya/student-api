@@ -21,7 +21,7 @@ $body = @{
 $utf8Body = [System.Text.Encoding]::UTF8.GetBytes($body)
 
 Invoke-RestMethod `
-    -Uri "http://localhost:8080/student" `
+    -Uri "http://localhost:8081/student" `
     -Method Post `
     -ContentType "application/json; charset=utf-8" `
     -Body $utf8Body

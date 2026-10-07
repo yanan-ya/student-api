@@ -2,6 +2,7 @@ package com.example.student_api.service;
 
 import com.example.student_api.dao.StudentDao;
 import com.example.student_api.entity.Student;
+import com.example.student_api.exception.StudentNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class StudentService {
         this.studentDao=studentDao;
     }
 
-    public List<Student> getAllStudent()throws Exception{
+    public List<Student> getAllStudent(){
         return studentDao.findAll();
     }
 
@@ -24,10 +25,18 @@ public class StudentService {
     }
 
     public int updateScore(String email,double newScore){
-        return studentDao.updateScore(email,newScore);
+        int rows = studentDao.updateScore(email,newScore);
+        if (rows == 0) {
+            throw new StudentNotFoundException();
+        }
+        return rows;
     }
 
     public int deleteByEmail(String email){
-        return studentDao.deleteByEmail(email);
+        int rows = studentDao.deleteByEmail(email);
+        if (rows == 0) {
+            throw new StudentNotFoundException();
+        }
+        return rows;
     }
 }
