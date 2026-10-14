@@ -11,18 +11,3 @@ public class StudentApiApplication {
 	}
 
 }
-/*
-$body = @{
-    name = "tom"
-    email = "ceshi2@test.com"
-    score = 80
-} | ConvertTo-Json
-
-$utf8Body = [System.Text.Encoding]::UTF8.GetBytes($body)
-
-Invoke-RestMethod `
-    -Uri "http://localhost:8081/student" `
-    -Method Post `
-    -ContentType "application/json; charset=utf-8" `
-    -Body $utf8Body
- */
