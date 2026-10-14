@@ -45,4 +45,16 @@ public class StudentDao {
         String sql="DELETE FROM student WHERE email=?";
         return jdbcTemplate.update(sql,email);
     }
+
+    public List<Student> searchByName(String name) {
+        String sql=" SELECT id, name, email, score FROM student WHERE name LIKE ?";
+        return jdbcTemplate.query(sql,(rs,rowNum)->{
+            Student s = new Student();
+            s.setId(rs.getInt("id"));
+            s.setName(rs.getString("name"));
+            s.setEmail(rs.getString("email"));
+            s.setScore(rs.getDouble("score"));
+            return s;
+        }, "%" + name + "%");
+    }
 }

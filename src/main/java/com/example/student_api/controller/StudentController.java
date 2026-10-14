@@ -44,4 +44,11 @@ public class StudentController {
         studentService.addStudent(student.getName(),student.getEmail(),student.getScore());
         return Result.success(null);
     }
+
+    //加入新的功能;
+    @GetMapping("/student/search")
+    public Result<List<Student>> searchStudent(
+            @RequestParam @NotBlank (message = "名字不能为空") String name){
+        return Result.success(studentService.searchByName(name));
+    }
 }

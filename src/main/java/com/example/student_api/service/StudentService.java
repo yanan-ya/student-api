@@ -3,6 +3,8 @@ package com.example.student_api.service;
 import com.example.student_api.dao.StudentDao;
 import com.example.student_api.entity.Student;
 import com.example.student_api.exception.StudentNotFoundException;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,5 +40,9 @@ public class StudentService {
             throw new StudentNotFoundException();
         }
         return rows;
+    }
+
+    public List<Student> searchByName(String name) {
+        return studentDao.searchByName(name);
     }
 }
